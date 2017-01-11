@@ -1,0 +1,14 @@
+Package: inspectr
+Type: Package
+Title: Perform Basic Checks of Dataframes
+Version: 0.1.0
+Authors@R: person("Jennifer", "Brussow", email = "jbrussow@gmail.com", 
+  role = c("aut", "cre"))
+Maintainer: Jennifer Brussow <jbrussow@gmail.com>
+Description: Check one column or multiple columns of a dataframe
+	using the preset basic checks or your own functions. Enables
+	checks without the use of lapply or sapply.
+License: CC BY-SA 3.0
+Encoding: UTF-8
+LazyData: true
+Depends: R (>= 3.0.1)

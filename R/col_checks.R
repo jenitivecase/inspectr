@@ -1,7 +1,17 @@
+#' Checking a single column for data fidelity
+#'
+#' @param colname The name of the column within your dataframe.
+#' @param data  The dataframe containing the data.
+#' @param fun The check function you'd like to apply to the data.
+#' @param fun The check function you'd like to apply to the data.
+#' @param output Specifies whether you'd like an excel output file.
+#'   The excel file
+
 col_check <- function(colname, data, fun, output = FALSE, stage = NULL) {
   if(!dir.exists(stage)){ dir.create(stage) }
   check_name <- paste0(colname, "_check")
-  data[,check_name] <- vapply(data[colname], FUN = fun, FUN.VALUE = vector(length = nrow(data[colname])))
+  data[,check_name] <- vapply(data[colname], FUN = fun, FUN.VALUE =
+                                vector(length = nrow(data[colname])))
 
   if(sum(data[,check_name]) != nrow(data)){
     temp <- data[which(data[,check_name] != TRUE),]
@@ -9,15 +19,18 @@ col_check <- function(colname, data, fun, output = FALSE, stage = NULL) {
       return(temp)
     } else if (output == TRUE){
       if(is.null(stage)){
-        write.xlsx(temp, paste0("./", stage, "/", check_name, "_errors_", date, ".xlsx"))
+        write.xlsx(temp, paste0("./", stage, "/", check_name, "_errors_",
+                                date, ".xlsx"))
       } else {
-        write.xlsx(temp, paste0("./", stage, "/", check_name, "_errors_", date, ".xlsx"))
+        write.xlsx(temp, paste0("./", stage, "/", check_name, "_errors_",
+                                date, ".xlsx"))
       }
     }
   }
 }
 
-two_col_check <- function(colname1, colname2, data, fun, output = FALSE, stage = NULL){
+two_col_check <- function(colname1, colname2, data, fun, output = FALSE,
+                          stage = NULL){
   if(!dir.exists(stage)){ dir.create(stage) }
   check_name <- paste0(colname1, "_check")
   data[,check_name] <- mapply(FUN = fun, data[colname1], data[colname2])
@@ -28,18 +41,22 @@ two_col_check <- function(colname1, colname2, data, fun, output = FALSE, stage =
       return(temp)
     } else if (output == TRUE){
       if(is.null(stage)){
-        write.xlsx(temp, paste0("./", stage, "/", check_name, "_errors_", date, ".xlsx"))
+        write.xlsx(temp, paste0("./", stage, "/", check_name, "_errors_",
+                                date, ".xlsx"))
       } else {
-        write.xlsx(temp, paste0("./", stage, "/", check_name, "_errors_", date, ".xlsx"))
+        write.xlsx(temp, paste0("./", stage, "/", check_name, "_errors_",
+                                date, ".xlsx"))
       }
     }
   }
 }
 
-three_col_check <- function(colname1, colname2, colname3, data = GRF, fun, output = FALSE, stage = NULL){
+three_col_check <- function(colname1, colname2, colname3, data = GRF, fun,
+                            output = FALSE, stage = NULL){
   if(!dir.exists(stage)){ dir.create(stage) }
   check_name <- paste0(colname1, "_check")
-  data[,check_name] <- mapply(FUN = fun, data[colname1], data[colname2], data[colname3])
+  data[,check_name] <- mapply(FUN = fun, data[colname1], data[colname2],
+                              data[colname3])
 
   if(sum(data[,check_name]) != nrow(data)){
     temp <- data[which(data[,check_name] != TRUE),]
@@ -47,9 +64,11 @@ three_col_check <- function(colname1, colname2, colname3, data = GRF, fun, outpu
       return(temp)
     } else if (output == TRUE){
       if(is.null(stage)){
-        write.xlsx(temp, paste0("./", stage, "/", check_name, "_errors_", date, ".xlsx"))
+        write.xlsx(temp, paste0("./", stage, "/", check_name, "_errors_",
+                                date, ".xlsx"))
       } else {
-        write.xlsx(temp, paste0("./", stage, "/", check_name, "_errors_", date, ".xlsx"))
+        write.xlsx(temp, paste0("./", stage, "/", check_name, "_errors_",
+                                date, ".xlsx"))
       }
     }
   }

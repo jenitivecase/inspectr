@@ -20,8 +20,12 @@ subj_check <- function(col1, col2){
   col1 %in% c("ELA", "M", "Sci", "SS") | (is.na(col1) & col2 == 9)
 }
 
-IA_check <- function(col1, col2){
-  (col1 == 9 & col2 %in% c(0:5)) | col1 <= col2
+twocol_lessthan <- function(col1, col2){
+  col1 <= col2
+}
+
+twocol_greaterthan <- function(col1, col2){
+  col1 >= col2
 }
 
 band_check <- function(col1, col2, col3){

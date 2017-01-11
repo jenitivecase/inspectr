@@ -2,23 +2,43 @@
 % Please edit documentation in R/col_checks.R
 \name{col_check}
 \alias{col_check}
-\title{Checking a single column for data fidelity}
+\title{Check a single column for data fidelity.}
 \usage{
 col_check(colname, data, fun, output = FALSE, stage = NULL)
 }
 \arguments{
-\item{colname}{The name of the column within your dataframe.}
+\item{colname}{character string specifying the name of the column within your
+dataframe.}
 
-\item{data}{The dataframe containing the data.}
+\item{data}{the dataframe containing the data.}
 
-\item{fun}{The check function you'd like to apply to the data.}
+\item{fun}{the check function you'd like to apply to the data.}
 
-\item{output}{Specifies whether you'd like an excel output file.
-The excel file}
+\item{output}{logical. If FALSE, the function returns a dataframe containing
+only records that failed the specified check. If TRUE, invisibly prints an
+excel output file containing only the records that failed the specified
+check.}
 
-\item{fun}{The check function you'd like to apply to the data.}
+\item{stage}{An optional character string that can be used to specify the
+stage of the checking process in which the check is occurring. Only useful
+if output = TRUE. If a value is specified, a that value is prefixed to the
+output file; if no value is given, no stage prefix is attached.}
+}
+\value{
+col_check(output = FALSE) returns a dataframe containing only records
+  that failed the specified check.
+
+col_check(output = TRUE) invisibly prints an excel output file
+  containing only records that failed the specified check.
 }
 \description{
-Checking a single column for data fidelity
+Check a single column for data fidelity.
+}
+\examples{
+col_check(colname = "ID_var", data = data, fun = numeric_check,
+output = TRUE, stage = "1-Reasonableness")
+
+col_check(colname = "Name", data = data, fun = character_check,
+output = FALSE)
 }
 

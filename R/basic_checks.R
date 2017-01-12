@@ -20,11 +20,19 @@ subj_check <- function(col1, col2){
   col1 %in% c("ELA", "M", "Sci", "SS") | (is.na(col1) & col2 == 9)
 }
 
-twocol_lessthan <- function(col1, col2){
+less_than <- function(col1, col2){
+  col1 < col2
+}
+
+less_than_equalto <- function(col1, col2){
   col1 <= col2
 }
 
-twocol_greaterthan <- function(col1, col2){
+greater_than <- function(col1, col2){
+  col1 > col2
+}
+
+greater_than_equalto <- function(col1, col2){
   col1 >= col2
 }
 

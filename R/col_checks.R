@@ -32,13 +32,13 @@ check_return <- function(errors, output, stage){
 #'   that failed the specified check.
 #' @return col_check(output = TRUE) invisibly prints an excel output file
 #'   containing only records that failed the specified check.
+#'
 #' @examples
 #' col_check(colname = "ID_var", data = data, fun = numeric_check,
 #' output = TRUE, stage = "1-Reasonableness")
 #'
 #' col_check(colname = "Name", data = data, fun = character_check,
 #' output = FALSE)
-
 
 col_check <- function(colname, data, fun, output = FALSE, stage = NULL) {
   if(!dir.exists(stage)){ dir.create(stage) }
@@ -52,6 +52,35 @@ col_check <- function(colname, data, fun, output = FALSE, stage = NULL) {
   }
 }
 
+#' Check a column for data fidelity using criteria related to a second column.
+#'
+#' @param colname1 character string specifying the name of the column within
+#'   your dataframe that will be the subject of the checks.
+#' @param colname2 character string specifying the name of a second column to
+#'   be used in the check criteria.
+#' @param data the dataframe containing the data.
+#' @param fun the check function you'd like to apply to the data.
+#' @param output logical. If FALSE, the function returns a dataframe containing
+#'   only records that failed the specified check. If TRUE, invisibly prints an
+#'   excel output file containing only the records that failed the specified
+#'   check.
+#' @param stage An optional character string that can be used to specify the
+#'   stage of the checking process in which the check is occurring. Only useful
+#'   if output = TRUE. If a value is specified, a that value is prefixed to the
+#'   output file; if no value is given, no stage prefix is attached.
+#'
+#' @return col_check(output = FALSE) returns a dataframe containing only records
+#'   that failed the specified check.
+#' @return col_check(output = TRUE) invisibly prints an excel output file
+#'   containing only records that failed the specified check.
+#'
+#' @examples
+#' two_col_check(colname1 = "smaller_values", colname2 = "larger_values", data =
+#' data, fun = less_than, output = TRUE, stage = "1-Reasonableness")
+#'
+#' two_col_check(colname1 = "larger_values", colname2 = "smaller_values", data =
+#' data, fun = greater_than_equalto, output = TRUE, stage = "1-Reasonableness")
+
 two_col_check <- function(colname1, colname2, data, fun, output = FALSE,
                           stage = NULL){
   if(!dir.exists(stage)){ dir.create(stage) }
@@ -63,6 +92,37 @@ two_col_check <- function(colname1, colname2, data, fun, output = FALSE,
     check_return(errors = temp, output = output, stage = stage)
   }
 }
+
+
+#' Check a column for data fidelity using criteria related to two additional
+#' columns.
+#'
+#' @param colname1 character string specifying the name of the column within
+#'   your dataframe that will be the subject of the checks.
+#' @param colname2 character string specifying the name of a second column to be
+#'   used in the check criteria.
+#' @param colname3 character string specifying the name of a third column to be
+#'   used in the check criteria.
+#' @param data the dataframe containing the data.
+#' @param fun the check function you'd like to apply to the data.
+#' @param output logical. If FALSE, the function returns a dataframe containing
+#'   only records that failed the specified check. If TRUE, invisibly prints an
+#'   excel output file containing only the records that failed the specified
+#'   check.
+#' @param stage An optional character string that can be used to specify the
+#'   stage of the checking process in which the check is occurring. Only useful
+#'   if output = TRUE. If a value is specified, a that value is prefixed to the
+#'   output file; if no value is given, no stage prefix is attached.
+#'
+#' @return col_check(output = FALSE) returns a dataframe containing only records
+#'   that failed the specified check.
+#' @return col_check(output = TRUE) invisibly prints an excel output file
+#'   containing only records that failed the specified check.
+#'
+#' @examples
+#' three_col_check(colname1 = "check_values", colname2 = "related_data",
+#' colname3 = "other_related_data", data = data, fun = band_check,
+#' output = TRUE, stage = "1-Reasonableness")
 
 three_col_check <- function(colname1, colname2, colname3, data = GRF, fun,
                             output = FALSE, stage = NULL){

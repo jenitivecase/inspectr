@@ -40,5 +40,6 @@ output = TRUE, stage = "1-Reasonableness")
 
 col_check(colname = "Name", data = data, fun = character_check,
 output = FALSE)
+
 }
 

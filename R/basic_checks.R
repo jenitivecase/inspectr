@@ -1,40 +1,131 @@
+#' Check whether all values are numeric.
+#'
+#' To be used with \code{\link{col_check}}.
 numeric_check <- function(x){
   !is.na(suppressWarnings(as.numeric(x)))
 }
+
+
+
+#' Check whether all values are either character strings, blanks ("") or NA.
+#'
+#' To be used with \code{\link{col_check}}.
 
 character_blanks_check <- function(x){
   !(x == "" | is.na(suppressWarnings(as.character(x))))
 }
 
+
+
+#' Check whether all values are character strings or NA. Blanks ("") are not
+#' permitted.
+#'
+#' To be used with \code{\link{col_check}}.
+
 character_check <- function(x){
   is.na(x) | !is.na(suppressWarnings(as.character(x)))
 }
 
-date_check <- function(x, begin, end){
+
+
+#' Check whether all values fall within a date range. NA values are also
+#' accepted.
+#'
+#' To be used with \code{\link{col_check}}. As currently written, you will need
+#' to use \code{\link{Curry}} on the function to ensure the other parameters
+#' move through correctly.
+#'
+#' @param x the data that enters the function (the column specified in
+#'   \code{\link{col_check}})
+#' @param begin the beginning acceptable date.
+#' @param end the last acceptable date.
+#' @param format a character string specifying the date format.
+date_check <- function(x, begin, end, format = "%m/%d/%Y"){
   is.na(x) |
-    as.Date(x, format="%m/%d/%Y") > as.Date(begin, format="%m/%d/%Y") &
-    as.Date(x, format="%m/%d/%Y") < as.Date(end, format="%m/%d/%Y")
+    as.Date(x, format = format) >= as.Date(begin, format = format) &
+    as.Date(x, format = format) <= as.Date(end, format = format)
 }
 
-subj_check <- function(col1, col2){
-  col1 %in% c("ELA", "M", "Sci", "SS") | (is.na(col1) & col2 == 9)
+
+
+#' Check whether all values in the column fall within a set of user-defined
+#' values.
+#'
+#' To be used with \code{\link{col_check}}. As currently written, you will need
+#' to use \code{\link{Curry}} on the function to ensure the other parameters
+#' move through correctly.
+#'
+#' @param x the data that enters the function (the column specified in
+#'   \code{\link{col_check}})
+#' @param values contains a value or vector of values that contain the
+#'   acceptable value(s) that may be found in the column. These values may be
+#'   any data type - character strings, numeric values, etc.
+
+val_check <- function(x, values){
+  x %in% values
 }
+
+
+
+# #' Check whether values in column one fall within a set of user-defined values and
+# #'
+# #' To be used with \code{\link{two_col_check}}. As currently written, you will need
+# #' to use \code{\link{Curry}} on the function to ensure the other parameters
+# #' move through correctly.
+# #'
+# #' @param x the data that enters the function (the column specified in
+# #'   \code{\link{col_check}})
+# #' @param begin the beginning acceptable date.
+# #' @param end the last acceptable date.
+# #' @param format a character string specifying the date format.
+#
+# val_check_twocol <- function(col1, col2){
+#   col1 %in% c("ELA", "M", "Sci", "SS") | (is.na(col1) & col2 == 9)
+# }
+
+
+
+#' Check whether values in column one are less than their corresponding values
+#' in the second column.
+#'
+#' To be used with \code{\link{two_col_check}}.
 
 less_than <- function(col1, col2){
   col1 < col2
 }
 
+
+#' Check whether values in column one are less than or equal to their
+#' corresponding values in the second column.
+#'
+#' To be used with \code{\link{two_col_check}}.
+
 less_than_equalto <- function(col1, col2){
   col1 <= col2
 }
 
+
+
+#' Check whether values in column one are greater than their corresponding values
+#' in the second column.
+#'
+#' To be used with \code{\link{two_col_check}}.
+#'
 greater_than <- function(col1, col2){
   col1 > col2
 }
 
+
+
+#' Check whether values in column one are greater than or equal to their
+#' corresponding values in the second column.
+#'
+#' To be used with \code{\link{two_col_check}}.
+#'
 greater_than_equalto <- function(col1, col2){
   col1 >= col2
 }
+
 
 band_check <- function(col1, col2, col3){
   col1 %in% c("Band 1", "Band 2", "Band 3", "Foundational") |

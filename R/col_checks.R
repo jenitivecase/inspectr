@@ -13,6 +13,8 @@ check_return <- function(errors, output, stage){
   }
 }
 
+
+
 #' Check a single column for data fidelity.
 #'
 #' @param colname character string specifying the name of the column within your
@@ -39,7 +41,7 @@ check_return <- function(errors, output, stage){
 #'
 #' col_check(colname = "Name", data = data, fun = character_check,
 #' output = FALSE)
-
+#'
 col_check <- function(colname, data, fun, output = FALSE, stage = NULL) {
   if(!dir.exists(stage)){ dir.create(stage) }
   check_name <- paste0(colname, "_check")
@@ -51,6 +53,8 @@ col_check <- function(colname, data, fun, output = FALSE, stage = NULL) {
     check_return(errors = temp, output = output, stage = stage)
   }
 }
+
+
 
 #' Check a column for data fidelity using criteria related to a second column.
 #'
@@ -92,6 +96,7 @@ two_col_check <- function(colname1, colname2, data, fun, output = FALSE,
     check_return(errors = temp, output = output, stage = stage)
   }
 }
+
 
 
 #' Check a column for data fidelity using criteria related to two additional

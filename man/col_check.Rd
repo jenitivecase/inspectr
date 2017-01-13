@@ -38,10 +38,11 @@ col_check(output = TRUE) invisibly prints an excel output file
 Check a single column for data fidelity.
 }
 \examples{
-col_check(colname = "ID_var", data = data, fun = numeric_check,
+col_check(colname = "ID_var", data = dataset, fun = numeric_check,
 output = TRUE, stage = "1-Reasonableness")
 
-col_check(colname = "Name", data = data, fun = character_check,
+col_check(colname = "Name", data = dataset, fun = character_check,
 output = FALSE)
+
 }
 

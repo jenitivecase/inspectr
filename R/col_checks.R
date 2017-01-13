@@ -38,11 +38,13 @@ check_return <- function(errors, output, stage, check_name = check_name){
 #'   containing only records that failed the specified check.
 #'
 #' @examples
-#' col_check(colname = "ID_var", data = data, fun = numeric_check,
+#' col_check(colname = "ID_var", data = dataset, fun = numeric_check,
 #' output = TRUE, stage = "1-Reasonableness")
 #'
-#' col_check(colname = "Name", data = data, fun = character_check,
+#' col_check(colname = "Name", data = dataset, fun = character_check,
 #' output = FALSE)
+#'
+#' @export
 
 col_check <- function(colname, data, fun, output = FALSE, stage = NULL, ...) {
   check_name <- paste0(colname, "_check")
@@ -88,6 +90,8 @@ col_check <- function(colname, data, fun, output = FALSE, stage = NULL, ...) {
 #'
 #' two_col_check(colname1 = "larger_values", colname2 = "smaller_values", data =
 #' data, fun = greater_than_equalto, output = TRUE, stage = "1-Reasonableness")
+#'
+#' @export
 
 two_col_check <- function(colname1, colname2, data, fun, output = FALSE,
                           stage = NULL, ...){
@@ -134,6 +138,8 @@ two_col_check <- function(colname1, colname2, data, fun, output = FALSE,
 #' three_col_check(colname1 = "check_values", colname2 = "related_data",
 #' colname3 = "other_related_data", data = data, fun = band_check,
 #' output = TRUE, stage = "1-Reasonableness")
+#'
+#' @export
 
 three_col_check <- function(colname1, colname2, colname3, data = data, fun,
                             output = FALSE, stage = NULL, ...){

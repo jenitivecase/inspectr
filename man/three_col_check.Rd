@@ -50,5 +50,6 @@ columns.
 three_col_check(colname1 = "check_values", colname2 = "related_data",
 colname3 = "other_related_data", data = data, fun = band_check,
 output = TRUE, stage = "1-Reasonableness")
+
 }
 

@@ -47,5 +47,6 @@ data, fun = less_than, output = TRUE, stage = "1-Reasonableness")
 
 two_col_check(colname1 = "larger_values", colname2 = "smaller_values", data =
 data, fun = greater_than_equalto, output = TRUE, stage = "1-Reasonableness")
+
 }
 

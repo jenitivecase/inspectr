@@ -3,6 +3,8 @@
 #' To be used with \code{\link{col_check}}.
 #' @param x the data that enters the function (the column specified in
 #'   \code{\link{col_check}})
+#'
+#' @export
 
 numeric_check <- function(x){
   !is.na(suppressWarnings(as.numeric(x)))
@@ -10,27 +12,32 @@ numeric_check <- function(x){
 
 
 
-#' Check whether all values are either character strings, blanks ("") or NA.
+#' Check whether all values are either character strings. Blanks ("") and NA
+#' values are not permitted.
 #'
 #' To be used with \code{\link{col_check}}.
 #' @param x the data that enters the function (the column specified in
 #'   \code{\link{col_check}})
+#'
+#' @export
 
 character_blanks_check <- function(x){
-  !(x == "" | is.na(suppressWarnings(as.character(x))))
+  !(x == "" | is.na(suppressWarnings(as.character(x))) | is.na(x))
 }
 
 
 
-#' Check whether all values are character strings or NA. Blanks ("") are not
-#' permitted.
+#' Check whether all values are character strings or blanks (""). NA values are
+#' not permitted.
 #'
 #' To be used with \code{\link{col_check}}.
 #' @param x the data that enters the function (the column specified in
 #'   \code{\link{col_check}})
+#'
+#' @export
 
 character_check <- function(x){
-  is.na(x) | !is.na(suppressWarnings(as.character(x)))
+  !(is.na(x) | is.na(suppressWarnings(as.character(x))))
 }
 
 
@@ -45,6 +52,8 @@ character_check <- function(x){
 #' @param begin the beginning acceptable date.
 #' @param end the last acceptable date.
 #' @param format a character string specifying the date format.
+#'
+#' @export
 
 date_check <- function(x, begin, end, format = "%m/%d/%Y"){
   is.na(x) |
@@ -64,6 +73,8 @@ date_check <- function(x, begin, end, format = "%m/%d/%Y"){
 #' @param values contains a value or vector of values that contain the
 #'   acceptable value(s) that may be found in the column. These values may be
 #'   any data type - character strings, numeric values, etc.
+#'
+#' @export
 
 val_check <- function(x, values){
   x %in% values
@@ -94,6 +105,8 @@ val_check <- function(x, values){
 #'
 #' @param col1 the first column of data, specified in \code{\link{col_check}})
 #' @param col2 the second column of data, specified in \code{\link{col_check}})
+#'
+#' @export
 
 less_than <- function(col1, col2){
   col1 < col2
@@ -107,7 +120,8 @@ less_than <- function(col1, col2){
 #'
 #' @param col1 the first column of data, specified in \code{\link{col_check}})
 #' @param col2 the second column of data, specified in \code{\link{col_check}})
-
+#'
+#' @export
 
 less_than_equalto <- function(col1, col2){
   col1 <= col2
@@ -122,6 +136,8 @@ less_than_equalto <- function(col1, col2){
 #'
 #' @param col1 the first column of data, specified in \code{\link{col_check}})
 #' @param col2 the second column of data, specified in \code{\link{col_check}})
+#'
+#' @export
 
 greater_than <- function(col1, col2){
   col1 > col2
@@ -136,6 +152,8 @@ greater_than <- function(col1, col2){
 #'
 #' @param col1 the first column of data, specified in \code{\link{col_check}})
 #' @param col2 the second column of data, specified in \code{\link{col_check}})
+#'
+#' @export
 
 greater_than_equalto <- function(col1, col2){
   col1 >= col2

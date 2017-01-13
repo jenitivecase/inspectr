@@ -1,6 +1,9 @@
 #' Check whether all values are numeric.
 #'
 #' To be used with \code{\link{col_check}}.
+#' @param x the data that enters the function (the column specified in
+#'   \code{\link{col_check}})
+
 numeric_check <- function(x){
   !is.na(suppressWarnings(as.numeric(x)))
 }
@@ -10,6 +13,8 @@ numeric_check <- function(x){
 #' Check whether all values are either character strings, blanks ("") or NA.
 #'
 #' To be used with \code{\link{col_check}}.
+#' @param x the data that enters the function (the column specified in
+#'   \code{\link{col_check}})
 
 character_blanks_check <- function(x){
   !(x == "" | is.na(suppressWarnings(as.character(x))))
@@ -21,6 +26,8 @@ character_blanks_check <- function(x){
 #' permitted.
 #'
 #' To be used with \code{\link{col_check}}.
+#' @param x the data that enters the function (the column specified in
+#'   \code{\link{col_check}})
 
 character_check <- function(x){
   is.na(x) | !is.na(suppressWarnings(as.character(x)))
@@ -31,15 +38,14 @@ character_check <- function(x){
 #' Check whether all values fall within a date range. NA values are also
 #' accepted.
 #'
-#' To be used with \code{\link{col_check}}. As currently written, you will need
-#' to use \code{\link{Curry}} on the function to ensure the other parameters
-#' move through correctly.
+#' To be used with \code{\link{col_check}}.
 #'
 #' @param x the data that enters the function (the column specified in
 #'   \code{\link{col_check}})
 #' @param begin the beginning acceptable date.
 #' @param end the last acceptable date.
 #' @param format a character string specifying the date format.
+
 date_check <- function(x, begin, end, format = "%m/%d/%Y"){
   is.na(x) |
     as.Date(x, format = format) >= as.Date(begin, format = format) &
@@ -51,9 +57,7 @@ date_check <- function(x, begin, end, format = "%m/%d/%Y"){
 #' Check whether all values in the column fall within a set of user-defined
 #' values.
 #'
-#' To be used with \code{\link{col_check}}. As currently written, you will need
-#' to use \code{\link{Curry}} on the function to ensure the other parameters
-#' move through correctly.
+#' To be used with \code{\link{col_check}}.
 #'
 #' @param x the data that enters the function (the column specified in
 #'   \code{\link{col_check}})
@@ -69,9 +73,7 @@ val_check <- function(x, values){
 
 # #' Check whether values in column one fall within a set of user-defined values and
 # #'
-# #' To be used with \code{\link{two_col_check}}. As currently written, you will need
-# #' to use \code{\link{Curry}} on the function to ensure the other parameters
-# #' move through correctly.
+# #' To be used with \code{\link{two_col_check}}.
 # #'
 # #' @param x the data that enters the function (the column specified in
 # #'   \code{\link{col_check}})
@@ -89,6 +91,9 @@ val_check <- function(x, values){
 #' in the second column.
 #'
 #' To be used with \code{\link{two_col_check}}.
+#'
+#' @param col1 the first column of data, specified in \code{\link{col_check}})
+#' @param col2 the second column of data, specified in \code{\link{col_check}})
 
 less_than <- function(col1, col2){
   col1 < col2
@@ -99,6 +104,10 @@ less_than <- function(col1, col2){
 #' corresponding values in the second column.
 #'
 #' To be used with \code{\link{two_col_check}}.
+#'
+#' @param col1 the first column of data, specified in \code{\link{col_check}})
+#' @param col2 the second column of data, specified in \code{\link{col_check}})
+
 
 less_than_equalto <- function(col1, col2){
   col1 <= col2
@@ -111,6 +120,9 @@ less_than_equalto <- function(col1, col2){
 #'
 #' To be used with \code{\link{two_col_check}}.
 #'
+#' @param col1 the first column of data, specified in \code{\link{col_check}})
+#' @param col2 the second column of data, specified in \code{\link{col_check}})
+
 greater_than <- function(col1, col2){
   col1 > col2
 }
@@ -122,6 +134,9 @@ greater_than <- function(col1, col2){
 #'
 #' To be used with \code{\link{two_col_check}}.
 #'
+#' @param col1 the first column of data, specified in \code{\link{col_check}})
+#' @param col2 the second column of data, specified in \code{\link{col_check}})
+
 greater_than_equalto <- function(col1, col2){
   col1 >= col2
 }

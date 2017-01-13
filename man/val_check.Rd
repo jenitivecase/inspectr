@@ -16,8 +16,6 @@ acceptable value(s) that may be found in the column. These values may be
 any data type - character strings, numeric values, etc.}
 }
 \description{
-To be used with \code{\link{col_check}}. As currently written, you will need
-to use \code{\link{Curry}} on the function to ensure the other parameters
-move through correctly.
+To be used with \code{\link{col_check}}.
 }
 

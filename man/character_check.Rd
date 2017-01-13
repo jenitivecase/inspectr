@@ -7,6 +7,10 @@ permitted.}
 \usage{
 character_check(x)
 }
+\arguments{
+\item{x}{the data that enters the function (the column specified in
+\code{\link{col_check}})}
+}
 \description{
 To be used with \code{\link{col_check}}.
 }

@@ -7,6 +7,11 @@ in the second column.}
 \usage{
 greater_than(col1, col2)
 }
+\arguments{
+\item{col1}{the first column of data, specified in \code{\link{col_check}})}
+
+\item{col2}{the second column of data, specified in \code{\link{col_check}})}
+}
 \description{
 To be used with \code{\link{two_col_check}}.
 }

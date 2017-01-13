@@ -8,7 +8,7 @@ Maintainer: Jennifer Brussow <jbrussow@gmail.com>
 Description: Check one column or multiple columns of a dataframe
     using the preset basic checks or your own functions. Enables
     checks without the use of lapply or sapply.
-License: CC BY-SA 3.0
+License: CC BY-SA 4.0
 Encoding: UTF-8
 LazyData: true
 Imports: 

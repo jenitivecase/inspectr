@@ -5,7 +5,7 @@
 \title{Check a column for data fidelity using criteria related to two additional
 columns.}
 \usage{
-three_col_check(colname1, colname2, colname3, data = GRF, fun,
+three_col_check(colname1, colname2, colname3, data = data, fun,
   output = FALSE, stage = NULL)
 }
 \arguments{

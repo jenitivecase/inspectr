@@ -18,8 +18,6 @@ date_check(x, begin, end, format = "\%m/\%d/\%Y")
 \item{format}{a character string specifying the date format.}
 }
 \description{
-To be used with \code{\link{col_check}}. As currently written, you will need
-to use \code{\link{Curry}} on the function to ensure the other parameters
-move through correctly.
+To be used with \code{\link{col_check}}.
 }
 

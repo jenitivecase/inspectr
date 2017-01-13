@@ -1,13 +1,13 @@
-check_return <- function(errors, output, stage){
+check_return <- function(errors, output, stage, check_name = check_name){
   date <- format.Date(Sys.Date(), "%Y%m%d")
   if(output == FALSE){
     return(errors)
   } else if (output == TRUE){
     if(is.null(stage)){
-      write.xlsx(errors, paste0(check_name, "_errors_",
+      openxlsx::write.xlsx(errors, paste0(check_name, "_errors_",
                               date, ".xlsx"))
     } else {
-      write.xlsx(errors, paste0(stage, "_", check_name, "_errors_",
+      openxlsx::write.xlsx(errors, paste0(stage, "_", check_name, "_errors_",
                               date, ".xlsx"))
     }
   }
@@ -29,6 +29,8 @@ check_return <- function(errors, output, stage){
 #'   stage of the checking process in which the check is occurring. Only useful
 #'   if output = TRUE. If a value is specified, a that value is prefixed to the
 #'   output file; if no value is given, no stage prefix is attached.
+#' @param ... arguments to be passed through to the function specified in
+#'   \code{fun}
 #'
 #' @return col_check(output = FALSE) returns a dataframe containing only records
 #'   that failed the specified check.
@@ -41,16 +43,16 @@ check_return <- function(errors, output, stage){
 #'
 #' col_check(colname = "Name", data = data, fun = character_check,
 #' output = FALSE)
-#'
-col_check <- function(colname, data, fun, output = FALSE, stage = NULL) {
-  if(!dir.exists(stage)){ dir.create(stage) }
+
+col_check <- function(colname, data, fun, output = FALSE, stage = NULL, ...) {
   check_name <- paste0(colname, "_check")
   data[,check_name] <- vapply(data[colname], FUN = fun, FUN.VALUE =
                                 vector(length = nrow(data[colname])))
 
   if(sum(data[,check_name]) != nrow(data)){
     temp <- data[which(data[,check_name] != TRUE),]
-    check_return(errors = temp, output = output, stage = stage)
+    check_return(errors = temp, output = output, stage = stage, check_name =
+                   check_name)
   }
 }
 
@@ -72,6 +74,8 @@ col_check <- function(colname, data, fun, output = FALSE, stage = NULL) {
 #'   stage of the checking process in which the check is occurring. Only useful
 #'   if output = TRUE. If a value is specified, a that value is prefixed to the
 #'   output file; if no value is given, no stage prefix is attached.
+#' @param ... arguments to be passed through to the function specified in
+#'   \code{fun}
 #'
 #' @return col_check(output = FALSE) returns a dataframe containing only records
 #'   that failed the specified check.
@@ -86,14 +90,14 @@ col_check <- function(colname, data, fun, output = FALSE, stage = NULL) {
 #' data, fun = greater_than_equalto, output = TRUE, stage = "1-Reasonableness")
 
 two_col_check <- function(colname1, colname2, data, fun, output = FALSE,
-                          stage = NULL){
-  if(!dir.exists(stage)){ dir.create(stage) }
+                          stage = NULL, ...){
   check_name <- paste0(colname1, "_check")
   data[,check_name] <- mapply(FUN = fun, data[colname1], data[colname2])
 
   if(sum(data[,check_name]) != nrow(data)){
     temp <- data[which(data[,check_name] != TRUE),]
-    check_return(errors = temp, output = output, stage = stage)
+    check_return(errors = temp, output = output, stage = stage, check_name =
+                   check_name)
   }
 }
 
@@ -118,6 +122,8 @@ two_col_check <- function(colname1, colname2, data, fun, output = FALSE,
 #'   stage of the checking process in which the check is occurring. Only useful
 #'   if output = TRUE. If a value is specified, a that value is prefixed to the
 #'   output file; if no value is given, no stage prefix is attached.
+#' @param ... arguments to be passed through to the function specified in
+#'   \code{fun}
 #'
 #' @return col_check(output = FALSE) returns a dataframe containing only records
 #'   that failed the specified check.
@@ -129,16 +135,16 @@ two_col_check <- function(colname1, colname2, data, fun, output = FALSE,
 #' colname3 = "other_related_data", data = data, fun = band_check,
 #' output = TRUE, stage = "1-Reasonableness")
 
-three_col_check <- function(colname1, colname2, colname3, data = GRF, fun,
-                            output = FALSE, stage = NULL){
-  if(!dir.exists(stage)){ dir.create(stage) }
+three_col_check <- function(colname1, colname2, colname3, data = data, fun,
+                            output = FALSE, stage = NULL, ...){
   check_name <- paste0(colname1, "_check")
   data[,check_name] <- mapply(FUN = fun, data[colname1], data[colname2],
                               data[colname3])
 
   if(sum(data[,check_name]) != nrow(data)){
     temp <- data[which(data[,check_name] != TRUE),]
-    check_return(errors = temp, output = output, stage = stage)
+    check_return(errors = temp, output = output, stage = stage, check_name =
+                   check_name)
   }
 }
 

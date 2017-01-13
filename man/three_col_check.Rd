@@ -6,7 +6,7 @@
 columns.}
 \usage{
 three_col_check(colname1, colname2, colname3, data = data, fun,
-  output = FALSE, stage = NULL)
+  output = FALSE, stage = NULL, ...)
 }
 \arguments{
 \item{colname1}{character string specifying the name of the column within
@@ -31,6 +31,9 @@ check.}
 stage of the checking process in which the check is occurring. Only useful
 if output = TRUE. If a value is specified, a that value is prefixed to the
 output file; if no value is given, no stage prefix is attached.}
+
+\item{...}{arguments to be passed through to the function specified in
+\code{fun}}
 }
 \value{
 col_check(output = FALSE) returns a dataframe containing only records

@@ -4,7 +4,7 @@
 \alias{col_check}
 \title{Check a single column for data fidelity.}
 \usage{
-col_check(colname, data, fun, output = FALSE, stage = NULL)
+col_check(colname, data, fun, output = FALSE, stage = NULL, ...)
 }
 \arguments{
 \item{colname}{character string specifying the name of the column within your
@@ -23,6 +23,9 @@ check.}
 stage of the checking process in which the check is occurring. Only useful
 if output = TRUE. If a value is specified, a that value is prefixed to the
 output file; if no value is given, no stage prefix is attached.}
+
+\item{...}{arguments to be passed through to the function specified in
+\code{fun}}
 }
 \value{
 col_check(output = FALSE) returns a dataframe containing only records
@@ -40,6 +43,5 @@ output = TRUE, stage = "1-Reasonableness")
 
 col_check(colname = "Name", data = data, fun = character_check,
 output = FALSE)
-
 }
 

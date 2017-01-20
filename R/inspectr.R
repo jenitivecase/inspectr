@@ -3,8 +3,8 @@
 #' The inspectr package contains two classes of functions: column checks and
 #' basic fidelity checks.
 #'
-#' @section Column check functions: These functions are the basic functions used
-#'   to perform checks. Each function checks one column for data fidelity, and
+#' @section Column check functions: These are the basic functions used to
+#'   perform checks. Each function checks one column for data fidelity, and
 #'   functions exist to check that column against one or two additional columns.
 #'   A data frame and a column name (or names) go in; a filtered set of records
 #'   exhibiting issues comes out (either as a dataframe or as an .xlsx document
@@ -12,7 +12,7 @@
 #'
 #' @section Basic fidelity checks: These functions are designed to be used with
 #'   the column check functions. They perform basic checks on the data, like
-#'   ensuring that all data in a column is of the same type or ensuring that all
+#'   ensuring that all data in a column are of the same type or ensuring that all
 #'   values in column 1 are less than their corresponding values in column 2.
 #'
 #' @docType package

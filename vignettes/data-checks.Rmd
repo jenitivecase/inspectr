@@ -1,5 +1,5 @@
 ---
-title: "Example Data Checks with `inspectr`"
+title: "Example Data Checks with **inspectr**"
 author: "Jennifer Brussow"
 output: rmarkdown::html_vignette
 vignette: >
@@ -11,39 +11,23 @@ vignette: >
 ```{r, echo = FALSE}
 knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
 
-dataset <- data.frame(matrix(NA, 50, 1))
+```
 
-dataset[1] <- c("3462891407", "6042592424", "7702757443", "3373242914", "9553299248", "4327020559", "4087289192", "4322037348", "9770520729", "7824406944", "3062460685", "475410871", "5136035099", "3577493348", "3496003836", "4589950456", "1097854566", "22831223", "1585324323", "8826939308", "544724188", "945814076", "789524583", "2931558249", "6880079016", "KS - Kansas", "4288544351", "21946637157", "499356211", "254377062", "21996327638", "39965152", "2004790709", "5986345268", "2961092736", "4965467175", "1563305976", "225371788", "41210741085", "2015891633", "66528372939", "85020346795", "7522008646", "5259019393", "7113005705", "9792759786", "4606602996", "831670055", "9674734384ï¿½", "5697570341")
-colnames(dataset)[1] <- "ID_var"
-
-dataset$FName <- c("Errell", "", "Dorian", "Vivian", "Kaitlynn",  NA, "Dylan", "Randy", "Khalyd", "Paul", "CLAYTON", "David", "Joslyn", "Aspen", "Tyreek", "Aerielle", "Jena", "Caden", "Tashina", "Keonna", "Heather", "Jude", "Brandon", "Devin", "Ryan", "Silas", "Carmine", "Hassan", "Ozmond", "Caden",  "Stuart", "Marlayni", "Anthony", "Jaylen", "Kendal", "Nadia", "Alicia", "JOSHUA", "JAVON",  "MADELYN",   "KENDALL", "WILLIAM", "Gabriel", "Chloe", "Jordyn", "Brian", "Fatima", "Jonathan", "Jacob", "Cesar")
-
-dataset$Var1 <- c(seq(1, 100, 2))
-dataset$Var2 <- c(seq(2, 100, 2))
-
-dataset[23, "Var2"] <- 4
-dataset[14, "Var1"] <- 56
-dataset[7, "Var1"] <- 14
-dataset[9, "Var2"] <- 17
-
-dataset$Perf_Lvl <- c(rep("Basic", 8), NA, NA, rep("Basic", 8),
-                      rep("Intermediate", 6), NA, rep("Intermediate", 6),
-                      "BAsic", rep("Advanced", 18))
-
-indices <- c(12, 3, 26, 49, 43, 11, 1, 6, 2, 7, 8, 18, 14, 15, 16, 23, 10, 9, 32, 33)
-dataset <- dataset[indices,]
+```{r, echo = FALSE}
+library(inspectr)
+data("dataset")
 ```
 
 ## Package format
-The `inspectr` package is designed to perform basic data checks without the user needing to understand the intricacies of apply functions.
+The **inspectr** package is designed to perform basic data checks without the user needing to understand the intricacies of apply functions.
 
 The functions can be grouped into two categories: column checks and
 basic fidelity checks.
 
-#### Column check functions
+### Column check functions
 These are the basic functions used to perform checks. Each function checks one column for data fidelity, and functions exist to check that column against one or two additional columns. A data frame and a column name (or names) go in; a filtered set of records exhibiting issues comes out (either as a dataframe or as an .xlsx document - your choice!)
 
-#### Basic fidelity check functions
+### Basic fidelity check functions
 These functions are designed to be used with the column check functions. They perform basic checks on the data, like ensuring that all data in a column are of the same type or ensuring that all values in column 1 are less than their corresponding values in column 2.
 
 
@@ -54,41 +38,41 @@ knitr::kable(dataset, format = "markdown", align = "l", row.names = FALSE)
 ```
 
 
-## Vignette Info
+### Single-column checks
+The `col_check` function is designed to check a single column of data for fidelity to a given check. Several of the basic functions are appropriate for the single column check: `numeric_check`, `character_check`, `character_blanks_check`, `date_check`, and `val_check`. 
 
-Note the various macros within the `vignette` section of the metadata block above. These are required in order to instruct R how to build the vignette. Note that you should change the `title` field and the `\VignetteIndexEntry` to match the title of your vignette.
+##### Numeric checks
+The `numeric_check` function checks to ensure all of the values in the columns contain numeric values. For example, in our example dataset, we want to ensure that all of the IDs in the ID_var column are numeric. 
 
-## Styles
-
-The `html_vignette` template includes a basic CSS theme. To override this theme you can specify your own CSS in the document metadata as follows:
-
-    output: 
-      rmarkdown::html_vignette:
-        css: mystyles.css
-
-## Figures
-
-The figure sizes have been customised so that you can easily put two images side-by-side. 
-
-```{r, fig.show='hold'}
-plot(1:10)
-plot(10:1)
+When we check our dataset with this function, we see that there are two records that have non-numeric characters in their ID variables. By setting `output = FALSE` in the arguments, the function returns a dataframe containing only the records with errors. 
+```{r single_col_check1, echo = TRUE, eval = TRUE}
+col_check("ID_var", dataset, numeric_check, output = FALSE)
 ```
 
-You can enable figure captions by `fig_caption: yes` in YAML:
+```{r single_col_check2, echo = TRUE, eval = TRUE}
+col_check("FName", dataset, character_check)
 
-    output:
-      rmarkdown::html_vignette:
-        fig_caption: yes
-
-Then you can use the chunk option `fig.cap = "Your figure caption."` in **knitr**.
-
-## More Examples
-
-You can write math expressions, e.g. $Y = X\beta + \epsilon$, footnotes^[A footnote here.], and tables, e.g. using `knitr::kable()`.
-
-```{r, echo=FALSE, results='asis'}
-knitr::kable(head(mtcars, 10))
+col_check("FName", dataset, character_blanks_check)
 ```
+
+```{r broken_graveyard, echo = TRUE, eval = TRUE}
+##Need to resolve three dots issues for both val_check & date_check
+# col_check("Perf_Lvl", dataset, val_check, values = c("Basic", "Intermediate", "Advanced"))
+# col_check("Perf_Lvl", dataset, date_check, begin = "06/02/1982", end = "11/11/1986")
+```
+
+### Two-column checks
+two_col_check("Var1", "Var2", dataset, less_than)
+two_col_check("Var1", "Var2", dataset, less_than_equalto)
+
+two_col_check("Var2", "Var1", dataset, greater_than)
+two_col_check("Var2", "Var1", dataset, greater_than_equalto)
+
+### Three-column checks
+three_col_check(colname1 = "Perf_Lvl", colname2 = "Var1", colname3 = "Var2",
+                data = dataset, fun = function(col1, col2, col3){
+                  col1 %in% c("Basic", "Intermediate", "Advanced") |
+                    (is.na(col1) & (col3 %% 2 ==0) & (col2 %% 2 ==1 ))
+})
 
 

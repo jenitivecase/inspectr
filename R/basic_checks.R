@@ -55,7 +55,7 @@ character_check <- function(x){
 #'
 #' @export
 
-date_check <- function(x, begin, end, format = "%m/%d/%Y"){
+date_check <- function(x, begin, end, format = "%m/%d/%Y", ...){
   is.na(x) |
     as.Date(x, format = format) >= as.Date(begin, format = format) &
     as.Date(x, format = format) <= as.Date(end, format = format)
@@ -76,7 +76,7 @@ date_check <- function(x, begin, end, format = "%m/%d/%Y"){
 #'
 #' @export
 
-val_check <- function(x, values){
+val_check <- function(x, values, ...){
   x %in% values
 }
 

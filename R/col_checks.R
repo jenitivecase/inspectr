@@ -36,6 +36,7 @@ col_check <- function(colname, data, fun, output = FALSE, stage = NULL, ...) {
 
   if(sum(data[,check_name]) != nrow(data)){
     temp <- data[which(data[,check_name] != TRUE),]
+    temp <- temp[, !names(temp) == check_name, drop = FALSE]
     check_return(errors = temp, output = output, stage = stage, check_name =
                    check_name)
   }
@@ -83,6 +84,7 @@ two_col_check <- function(colname1, colname2, data, fun, output = FALSE,
 
   if(sum(data[,check_name]) != nrow(data)){
     temp <- data[which(data[,check_name] != TRUE),]
+    temp <- temp[, !names(temp) == check_name, drop = FALSE]
     check_return(errors = temp, output = output, stage = stage, check_name =
                    check_name)
   }
@@ -132,6 +134,7 @@ three_col_check <- function(colname1, colname2, colname3, data = data, fun,
 
   if(sum(data[,check_name]) != nrow(data)){
     temp <- data[which(data[,check_name] != TRUE),]
+    temp <- temp[, !names(temp) == check_name, drop = FALSE]
     check_return(errors = temp, output = output, stage = stage, check_name =
                    check_name)
   }

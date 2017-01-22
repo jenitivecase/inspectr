@@ -32,7 +32,7 @@ These functions are designed to be used with the column check functions. They pe
 
 
 ## Checking an example dataset
-To illustrate how to use these functions, we'll apply some basic checks to a sample dataset:
+To illustrate how to use these functions, let's apply some basic checks to a sample dataset:
 ```{r echo = FALSE}
 knitr::kable(dataset, format = "markdown", align = "l", row.names = FALSE)
 ```
@@ -42,12 +42,16 @@ knitr::kable(dataset, format = "markdown", align = "l", row.names = FALSE)
 The `col_check` function is designed to check a single column of data for fidelity to a given check. Several of the basic functions are appropriate for the single column check: `numeric_check`, `character_check`, `character_blanks_check`, `date_check`, and `val_check`. 
 
 ##### Numeric checks
-The `numeric_check` function checks to ensure all of the values in the columns contain numeric values. For example, in our example dataset, we want to ensure that all of the IDs in the ID_var column are numeric. 
+The `numeric_check` function checks to ensure all of the values in the column can be coerced into numeric values by `as.numeric`. For example, in the example dataset, the goal is to ensure that all of the IDs in the ID_var column are numeric. 
 
-When we check our dataset with this function, we see that there are two records that have non-numeric characters in their ID variables. By setting `output = FALSE` in the arguments, the function returns a dataframe containing only the records with errors. 
+When checking the example dataset with this function, the results show that there are two records that have non-numeric characters in their ID variables. By setting `output = FALSE` in the arguments, the function returns a dataframe containing only the records with errors. 
+
 ```{r single_col_check1, echo = TRUE, eval = TRUE}
 col_check("ID_var", dataset, numeric_check, output = FALSE)
 ```
+
+##### Character checks
+These `character_check` and `character_blanks_check` functions ensure that all of the values in the column can be coerced into character strings by `as.character`. While `character_check` does not tolerate blank values, `character_blanks_check` allows blanks as acceptable values for the purposes of the check. This difference is illustrated by the different results each check yields from the sample dataset:
 
 ```{r single_col_check2, echo = TRUE, eval = TRUE}
 col_check("FName", dataset, character_check)
@@ -55,6 +59,10 @@ col_check("FName", dataset, character_check)
 col_check("FName", dataset, character_blanks_check)
 ```
 
+As you can see, neither of these checks tolerates NA values. 
+
+
+##### Value checks
 ```{r broken_graveyard, echo = TRUE, eval = TRUE}
 ##Need to resolve three dots issues for both val_check & date_check
 # col_check("Perf_Lvl", dataset, val_check, values = c("Basic", "Intermediate", "Advanced"))
@@ -62,17 +70,32 @@ col_check("FName", dataset, character_blanks_check)
 ```
 
 ### Two-column checks
-two_col_check("Var1", "Var2", dataset, less_than)
-two_col_check("Var1", "Var2", dataset, less_than_equalto)
+The `two_col_check` function is designed to check one column of data against values in another column. Several of the basic functions are appropriate for the two column check: `less_than`, `less_than_equalto`, `greater_than`, and `greater_than_equalto`. 
 
+```{r less_than, echo = TRUE, eval = TRUE}
+two_col_check("Var1", "Var2", dataset, less_than)
+
+two_col_check("Var1", "Var2", dataset, less_than_equalto)
+```
+
+The `greater_than` and `greater_than_equalto` functions work similarly. Notice that for these checks,the order of the input columns is reversed; *Var2* is the column being checked for fidelity, and *Var1* is the reference column.
+
+```{r greater_than, echo = TRUE, eval = TRUE}
 two_col_check("Var2", "Var1", dataset, greater_than)
+
 two_col_check("Var2", "Var1", dataset, greater_than_equalto)
+```
 
 ### Three-column checks
+As of version `r packageVersion("inspectr")`, **inspectr** does not include any basic figelity check functions that are designed to work with `three_col_check`. However, you are encouraged to write your own and plug them in! The example below shows a function written to check the *Perf_Lvl* column against *Var1* and *Var2* as reference columns. In order to pass the check, the value of *Perf_Lvl* has to be either "Basic", "Intermediate", or "Advanced"; OR if *Perf_Lvl* is NA, then *Var2* must be even and *Var1* must be odd. 
+
+This is sort of a silly check, but it illustrates the way a user-defined function can be used with `three_col_check`. Of course, you can also use user-defined functions with `col_check` and `two_col_check`, as well.
+
+```{r three_col_check, echo = TRUE, eval = TRUE}
 three_col_check(colname1 = "Perf_Lvl", colname2 = "Var1", colname3 = "Var2",
                 data = dataset, fun = function(col1, col2, col3){
                   col1 %in% c("Basic", "Intermediate", "Advanced") |
                     (is.na(col1) & (col3 %% 2 ==0) & (col2 %% 2 ==1 ))
 })
-
+```
 

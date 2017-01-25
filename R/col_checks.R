@@ -32,7 +32,7 @@
 col_check <- function(colname, data, fun, output = FALSE, stage = NULL, ...) {
   check_name <- paste0(colname, "_check")
   data[,check_name] <- vapply(data[colname], FUN = fun, FUN.VALUE =
-                                vector(length = nrow(data[colname])))
+                                vector(length = nrow(data[colname])), ...)
 
   if(sum(data[,check_name]) != nrow(data)){
     temp <- data[which(data[,check_name] != TRUE),]

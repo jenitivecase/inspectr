@@ -31,8 +31,7 @@
 
 col_check <- function(colname, data, fun, output = FALSE, stage = NULL, ...) {
   check_name <- paste0(colname, "_check")
-  data[,check_name] <- vapply(data[colname], FUN = fun, FUN.VALUE =
-                                vector(length = nrow(data[colname])), ...)
+  data[,check_name] <- apply(data[colname], 1, FUN = fun, ...)
 
   if(sum(data[,check_name]) != nrow(data)){
     temp <- data[which(data[,check_name] != TRUE),]
@@ -41,7 +40,6 @@ col_check <- function(colname, data, fun, output = FALSE, stage = NULL, ...) {
                    check_name)
   }
 }
-
 
 
 #' Check a column for data fidelity using criteria related to a second column.

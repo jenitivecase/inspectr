@@ -62,16 +62,21 @@ col_check("FName", dataset, character_blanks_check)
 As you can see, neither of these checks tolerates NA values. 
 
 
-##### Value checks
-```{r broken_graveyard, echo = TRUE, eval = TRUE}
-##Need to resolve three dots issues for both val_check & date_check
-test <- col_check("Perf_Lvl", dataset, val_check, values = c("Basic", "Intermediate", "Advanced"))
+##### Value check
+The `value_check` function allows the user to input their own values to set the parameters of the check. The user supplies a vector of accepted values to the `values` argument, and the check ensures that all values in the column are within that set of accepted values. Blank values and NA values are not tolerated by default, though they can be included in the vector of accepted values. 
 
-test <- col_check("Perf_Lvl", dataset, fun = function(x){
-  x %in% c("Basic", "Intermediate", "Advanced")
-})
+```{r value_check, echo = TRUE, eval = TRUE}
+##Need to resolve three dots issues for date_check
+col_check("Perf_Lvl", dataset, val_check, values = c("Basic", "Intermediate", "Advanced"))
 
-# col_check("Perf_Lvl", dataset, date_check, begin = "06/02/1982", end = "11/11/1986")
+col_check("Var1", dataset, val_check, values = c(1:25))
+```
+
+##### Date check
+The `date_check` function allows the user to input a beginning and end date to set the parameters of the check. The check ensures that all values in the column are equal to or between the specified beginning and end dates and returns all values that do not fall within the given range.
+
+```{r date_check, echo = TRUE, eval = TRUE}
+col_check("dates", dataset, date_check, begin = "06/02/1982", end = "11/11/1986")
 ```
 
 ### Two-column checks

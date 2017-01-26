@@ -118,10 +118,10 @@ two_col_check <- function(colname1, colname2, data, fun, output = FALSE,
 #'   containing only records that failed the specified check.
 #'
 #' @examples
-#' three_col_check(colname1 = "check_values", colname2 = "related_data",
-#' colname3 = "other_related_data", data = data, fun = band_check,
-#' output = TRUE, stage = "1-Reasonableness")
-#'
+#' three_col_check(colname1 = "Perf_Lvl", colname2 = "Var1", colname3 = "Var2",
+#' data = dataset, fun = function(col1, col2, col3){
+#'    col1 %in% c("Basic", "Intermediate", "Advanced") |
+#'    (is.na(col1) & (col3 %% 2 ==0) & (col2 %% 2 ==1 ))
 #' @export
 
 three_col_check <- function(colname1, colname2, colname3, data = data, fun,

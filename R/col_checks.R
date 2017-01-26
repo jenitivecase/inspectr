@@ -69,7 +69,8 @@ col_check <- function(colname, data, fun, output = FALSE, stage = NULL, ...) {
 #' @examples
 #' two_col_check("Var1", "Var2", dataset, less_than_equalto, output = FALSE)
 #'
-#' two_col_check("Var2", "Var1", dataset, greater_than, output = TRUE, stage = "1-Reasonableness")
+#' two_col_check("Var2", "Var1", dataset, greater_than, output = TRUE,
+#'    stage = "1-Reasonableness")
 #'
 #' @export
 

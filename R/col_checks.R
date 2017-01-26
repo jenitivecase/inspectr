@@ -24,7 +24,7 @@
 #' col_check(colname = "ID_var", data = dataset, fun = numeric_check,
 #' output = TRUE, stage = "1-Reasonableness")
 #'
-#' col_check(colname = "Name", data = dataset, fun = character_check,
+#' col_check(colname = "FName", data = dataset, fun = character_check,
 #' output = FALSE)
 #'
 #' @export

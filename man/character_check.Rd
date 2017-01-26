@@ -2,8 +2,8 @@
 % Please edit documentation in R/basic_checks.R
 \name{character_check}
 \alias{character_check}
-\title{Check whether all values are character strings or NA. Blanks ("") are not
-permitted.}
+\title{Check whether all values are character strings or blanks (""). NA values are
+not permitted.}
 \usage{
 character_check(x)
 }

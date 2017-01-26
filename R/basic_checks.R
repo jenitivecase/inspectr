@@ -165,10 +165,3 @@ greater_than <- function(col1, col2){
 greater_than_equalto <- function(col1, col2){
   col1 >= col2
 }
-
-
-band_check <- function(col1, col2, col3){
-  col1 %in% c("Band 1", "Band 2", "Band 3", "Foundational") |
-    (is.na(col1) & col3 == "SS" & col2 %in% c(1:4, 9)) |
-    (is.na(col1) & is.na(col3) & col2 == 9)
-}

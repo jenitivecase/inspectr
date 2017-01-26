@@ -97,7 +97,7 @@ two_col_check("Var2", "Var1", dataset, greater_than_equalto)
 ```
 
 ### Three-column checks
-As of version `r packageVersion("inspectr")`, **inspectr** does not include any basic figelity check functions that are designed to work with `three_col_check`. However, you are encouraged to write your own and plug them in! The example below shows a function written to check the *Perf_Lvl* column against *Var1* and *Var2* as reference columns. In order to pass the check, the value of *Perf_Lvl* has to be either "Basic", "Intermediate", or "Advanced"; OR if *Perf_Lvl* is NA, then *Var2* must be even and *Var1* must be odd. 
+As of version `r packageVersion("inspectr")`, **inspectr** does not include any basic fidelity check functions that are designed to work with `three_col_check`. However, you are encouraged to write your own and plug them in! The example below shows a function written to check the *Perf_Lvl* column against *Var1* and *Var2* as reference columns. In order to pass the check, the value of *Perf_Lvl* has to be either "Basic", "Intermediate", or "Advanced"; OR if *Perf_Lvl* is NA, then *Var2* must be even and *Var1* must be odd. 
 
 This is sort of a silly check, but it illustrates the way a user-defined function can be used with `three_col_check`. Of course, you can also use user-defined functions with `col_check` and `two_col_check`, as well.
 

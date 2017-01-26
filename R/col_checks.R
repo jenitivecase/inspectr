@@ -46,8 +46,8 @@ col_check <- function(colname, data, fun, output = FALSE, stage = NULL, ...) {
 #'
 #' @param colname1 character string specifying the name of the column within
 #'   your dataframe that will be the subject of the checks.
-#' @param colname2 character string specifying the name of a second column to
-#'   be used in the check criteria.
+#' @param colname2 character string specifying the name of a second column to be
+#'   used in the check criteria.
 #' @param data the dataframe containing the data.
 #' @param fun the check function you'd like to apply to the data.
 #' @param output logical. If FALSE, the function returns a dataframe containing
@@ -67,11 +67,9 @@ col_check <- function(colname, data, fun, output = FALSE, stage = NULL, ...) {
 #'   containing only records that failed the specified check.
 #'
 #' @examples
-#' two_col_check(colname1 = "smaller_values", colname2 = "larger_values", data =
-#' data, fun = less_than, output = TRUE, stage = "1-Reasonableness")
+#' two_col_check("Var1", "Var2", dataset, less_than_equalto, output = FALSE)
 #'
-#' two_col_check(colname1 = "larger_values", colname2 = "smaller_values", data =
-#' data, fun = greater_than_equalto, output = TRUE, stage = "1-Reasonableness")
+#' two_col_check("Var2", "Var1", dataset, greater_than, output = TRUE, stage = "1-Reasonableness")
 #'
 #' @export
 
@@ -122,6 +120,7 @@ two_col_check <- function(colname1, colname2, data, fun, output = FALSE,
 #' data = dataset, fun = function(col1, col2, col3){
 #'    col1 %in% c("Basic", "Intermediate", "Advanced") |
 #'    (is.na(col1) & (col3 %% 2 ==0) & (col2 %% 2 ==1 ))
+#'    })
 #' @export
 
 three_col_check <- function(colname1, colname2, colname3, data = data, fun,

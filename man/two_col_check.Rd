@@ -11,8 +11,8 @@ two_col_check(colname1, colname2, data, fun, output = FALSE, stage = NULL,
 \item{colname1}{character string specifying the name of the column within
 your dataframe that will be the subject of the checks.}
 
-\item{colname2}{character string specifying the name of a second column to
-be used in the check criteria.}
+\item{colname2}{character string specifying the name of a second column to be
+used in the check criteria.}
 
 \item{data}{the dataframe containing the data.}
 
@@ -42,11 +42,9 @@ col_check(output = TRUE) invisibly prints an excel output file
 Check a column for data fidelity using criteria related to a second column.
 }
 \examples{
-two_col_check(colname1 = "smaller_values", colname2 = "larger_values", data =
-data, fun = less_than, output = TRUE, stage = "1-Reasonableness")
+two_col_check("Var1", "Var2", dataset, less_than_equalto, output = FALSE)
 
-two_col_check(colname1 = "larger_values", colname2 = "smaller_values", data =
-data, fun = greater_than_equalto, output = TRUE, stage = "1-Reasonableness")
+two_col_check("Var2", "Var1", dataset, greater_than, output = TRUE, stage = "1-Reasonableness")
 
 }
 

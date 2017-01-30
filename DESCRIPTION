@@ -7,7 +7,7 @@ Authors@R: person("Jennifer", "Brussow", email = "jbrussow@gmail.com",
 Maintainer: Jennifer Brussow <jbrussow@gmail.com>
 Description: Check one column or multiple columns of a dataframe
     using the preset basic checks or your own functions. Enables
-    checks without knowledge of lapply or sapply.
+    checks without knowledge of lapply() or sapply().
 License: CC BY-SA 4.0
 Encoding: UTF-8
 LazyData: true

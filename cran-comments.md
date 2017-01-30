@@ -1,3 +1,8 @@
+## Resubmission
+Per feedback from Kurt:
+* Excluded cran-comments.md
+* Changed to read lapply() and sapply() in DESCRIPTION
+
 ## Test environments
 * local Windows 7 install, R 3.3.2
 * ubuntu 12.04 (on travis-ci), R 3.3.2

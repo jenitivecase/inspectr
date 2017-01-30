@@ -66,7 +66,6 @@ As you can see, neither of these checks tolerates NA values.
 The `value_check` function allows the user to input their own values to set the parameters of the check. The user supplies a vector of accepted values to the `values` argument, and the check ensures that all values in the column are within that set of accepted values. Blank values and NA values are not tolerated by default, though they can be included in the vector of accepted values. 
 
 ```{r value_check, echo = TRUE, eval = TRUE}
-##Need to resolve three dots issues for date_check
 col_check("Perf_Lvl", dataset, val_check, values = c("Basic", "Intermediate", "Advanced"))
 
 col_check("Var1", dataset, val_check, values = c(1:25))

@@ -1,0 +1,5 @@
+TO DO:
+
+Make versions of functions that reject NA values
+Make three-column checks? Unsure what these would look like
+Make vignette comparing to other checking packages

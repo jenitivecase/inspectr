@@ -12,22 +12,7 @@ numeric_check <- function(x){
 
 
 
-#' Check whether all values are character strings. Blanks ("") and NA
-#' values are not permitted.
-#'
-#' To be used with \code{\link{col_check}}.
-#' @param x the data that enters the function (the column specified in
-#'   \code{\link{col_check}})
-#'
-#' @export
-
-character_blanks_check <- function(x){
-  !(x == "" | is.na(suppressWarnings(as.character(x))) | is.na(x))
-}
-
-
-
-#' Check whether all values are character strings or blanks (""). NA values are
+#' Check whether all values are character strings or NA values. Blanks ("") are
 #' not permitted.
 #'
 #' To be used with \code{\link{col_check}}.
@@ -36,8 +21,22 @@ character_blanks_check <- function(x){
 #'
 #' @export
 
+character_blanks_check <- function(x){
+  is.na(x) | (!(is.na(suppressWarnings(as.character(x)))) & !(x == ""))
+}
+
+
+
+#' Check whether all values are character strings, blanks (""), or NA values.
+#'
+#' To be used with \code{\link{col_check}}.
+#' @param x the data that enters the function (the column specified in
+#'   \code{\link{col_check}})
+#'
+#' @export
+
 character_check <- function(x){
-  !(is.na(x) | is.na(suppressWarnings(as.character(x))))
+  is.na(x) | !(is.na(suppressWarnings(as.character(x))))
 }
 
 

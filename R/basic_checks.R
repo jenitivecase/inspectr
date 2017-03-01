@@ -12,7 +12,7 @@ numeric_check <- function(x){
 
 
 
-#' Check whether all values are either character strings. Blanks ("") and NA
+#' Check whether all values are character strings. Blanks ("") and NA
 #' values are not permitted.
 #'
 #' To be used with \code{\link{col_check}}.

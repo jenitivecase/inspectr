@@ -13,4 +13,3 @@ numeric_check(x)
 \description{
 To be used with \code{\link{col_check}}.
 }
-

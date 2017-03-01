@@ -1,5 +1,10 @@
 #' Check a single column for data fidelity.
 #'
+#' To be used with user-defined functions or with built-in check functions such
+#' as \code{\link{numeric_check}}, \code{\link{character_check}},
+#' \code{\link{character_blanks_check}}, \code{\link{date_check}}, and
+#' \code{\link{val_check}}.
+#'
 #' @param colname character string specifying the name of the column within your
 #'   dataframe.
 #' @param data the dataframe containing the data.
@@ -43,6 +48,10 @@ col_check <- function(colname, data, fun, output = FALSE, stage = NULL, ...) {
 
 
 #' Check a column for data fidelity using criteria related to a second column.
+#'
+#' To be used with user-defined functions or with built-in check functions such
+#' as \code{\link{less_than}}, \code{\link{less_than_equalto}},
+#' \code{\link{greater_than}}, and \code{\link{greater_than_equalto}}.
 #'
 #' @param colname1 character string specifying the name of the column within
 #'   your dataframe that will be the subject of the checks.
@@ -91,6 +100,10 @@ two_col_check <- function(colname1, colname2, data, fun, output = FALSE,
 
 #' Check a column for data fidelity using criteria related to two additional
 #' columns.
+#'
+#' To be used with user-defined functions. The example below illustrates an
+#' example of a user-defined function that could be defined to use with this
+#' function.
 #'
 #' @param colname1 character string specifying the name of the column within
 #'   your dataframe that will be the subject of the checks.

@@ -20,4 +20,3 @@ date_check(x, begin, end, format = "\%m/\%d/\%Y")
 \description{
 To be used with \code{\link{col_check}}.
 }
-

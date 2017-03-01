@@ -53,4 +53,3 @@ data = dataset, fun = function(col1, col2, col3){
    (is.na(col1) & (col3 \%\% 2 ==0) & (col2 \%\% 2 ==1 ))
    })
 }
-

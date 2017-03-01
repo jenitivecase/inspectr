@@ -48,4 +48,3 @@ two_col_check("Var2", "Var1", dataset, greater_than, output = TRUE,
    stage = "1-Reasonableness")
 
 }
-

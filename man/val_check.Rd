@@ -18,4 +18,3 @@ any data type - character strings, numeric values, etc.}
 \description{
 To be used with \code{\link{col_check}}.
 }
-

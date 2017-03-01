@@ -15,4 +15,3 @@ greater_than_equalto(col1, col2)
 \description{
 To be used with \code{\link{two_col_check}}.
 }
-

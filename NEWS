@@ -1,3 +1,5 @@
-# inspectr version 1.0.0
+# inspectr version 1.1.0
+
+Version 1.1.0 - updated character_blanks_check() and character_check() to accept NA values and have better logical syntax
 
 Version 1.0.0 - first stable release

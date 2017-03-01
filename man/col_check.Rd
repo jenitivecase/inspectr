@@ -45,4 +45,3 @@ col_check(colname = "FName", data = dataset, fun = character_check,
 output = FALSE)
 
 }
-

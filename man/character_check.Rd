@@ -2,8 +2,7 @@
 % Please edit documentation in R/basic_checks.R
 \name{character_check}
 \alias{character_check}
-\title{Check whether all values are character strings or blanks (""). NA values are
-not permitted.}
+\title{Check whether all values are character strings, blanks (""), or NA values.}
 \usage{
 character_check(x)
 }
@@ -14,4 +13,3 @@ character_check(x)
 \description{
 To be used with \code{\link{col_check}}.
 }
-

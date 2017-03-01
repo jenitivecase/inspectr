@@ -17,4 +17,3 @@ Demonstration data created to resemble data collected from an educational
 assessment.
 }
 \keyword{datasets}
-

@@ -58,8 +58,6 @@ date_check <- function(x, begin, end, format = "%m/%d/%Y"){
   test <- tryCatch(as.Date(x, format = format), error = function(e){return(NULL)})
   if(is.null(test)){
     return(FALSE)
-  } else if(sum(is.na(test)) == length(test)) {
-    return(FALSE)
   } else {
     is.na(x) |
       as.Date(x, format = format) >= as.Date(begin, format = format) &

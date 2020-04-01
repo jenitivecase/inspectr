@@ -3,7 +3,6 @@
 \docType{package}
 \name{inspectr}
 \alias{inspectr}
-\alias{inspectr-package}
 \title{inspectr: A package for performing fidelity checks on messy dataframes.}
 \description{
 The inspectr package contains two classes of functions: column checks and

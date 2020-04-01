@@ -4,8 +4,16 @@
 \alias{two_col_check}
 \title{Check a column for data fidelity using criteria related to a second column.}
 \usage{
-two_col_check(colname1, colname2, data, fun, output = FALSE, stage = NULL,
-  ...)
+two_col_check(
+  colname1,
+  colname2,
+  data,
+  fun,
+  output = FALSE,
+  loc = NULL,
+  stage = NULL,
+  ...
+)
 }
 \arguments{
 \item{colname1}{character string specifying the name of the column within
@@ -23,6 +31,10 @@ only records that failed the specified check. If TRUE, invisibly prints an
 excel output file containing only the records that failed the specified
 check.}
 
+\item{loc}{An optional character string that can be used to specify the desired 
+location of the error output. Can only be used when output = TRUE. If output = TRUE
+and loc is NULL, the error output gets put into the working directory.}
+
 \item{stage}{An optional character string that can be used to specify the
 stage of the checking process in which the check is occurring. Only useful
 if output = TRUE. If a value is specified, a that value is prefixed to the
@@ -39,7 +51,9 @@ col_check(output = TRUE) invisibly prints an excel output file
   containing only records that failed the specified check.
 }
 \description{
-Check a column for data fidelity using criteria related to a second column.
+To be used with user-defined functions or with built-in check functions such
+as \code{\link{less_than}}, \code{\link{less_than_equalto}},
+\code{\link{greater_than}}, and \code{\link{greater_than_equalto}}.
 }
 \examples{
 two_col_check("Var1", "Var2", dataset, less_than_equalto, output = FALSE)

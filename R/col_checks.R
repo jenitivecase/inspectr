@@ -13,6 +13,9 @@
 #'   only records that failed the specified check. If TRUE, invisibly prints an
 #'   excel output file containing only the records that failed the specified
 #'   check.
+#' @param loc An optional character string that can be used to specify the desired 
+#' location of the error output. Can only be used when output = TRUE. If output = TRUE
+#' and loc is NULL, the error output gets put into the working directory.
 #' @param stage An optional character string that can be used to specify the
 #'   stage of the checking process in which the check is occurring. Only useful
 #'   if output = TRUE. If a value is specified, a that value is prefixed to the
@@ -34,14 +37,14 @@
 #'
 #' @export
 
-col_check <- function(colname, data, fun, output = FALSE, stage = NULL, ...) {
+col_check <- function(colname, data, fun, output = FALSE, loc = NULL, stage = NULL, ...) {
   check_name <- paste0(colname, "_check")
   data[,check_name] <- apply(data[colname], 1, FUN = fun, ...)
 
   if(sum(data[,check_name]) != nrow(data)){
     temp <- data[which(data[,check_name] != TRUE),]
     temp <- temp[, !names(temp) == check_name, drop = FALSE]
-    check_return(errors = temp, output = output, stage = stage, check_name =
+    check_return(errors = temp, output = output, loc = loc, stage = stage, check_name =
                    check_name)
   }
 }
@@ -63,6 +66,9 @@ col_check <- function(colname, data, fun, output = FALSE, stage = NULL, ...) {
 #'   only records that failed the specified check. If TRUE, invisibly prints an
 #'   excel output file containing only the records that failed the specified
 #'   check.
+#' @param loc An optional character string that can be used to specify the desired 
+#' location of the error output. Can only be used when output = TRUE. If output = TRUE
+#' and loc is NULL, the error output gets put into the working directory.
 #' @param stage An optional character string that can be used to specify the
 #'   stage of the checking process in which the check is occurring. Only useful
 #'   if output = TRUE. If a value is specified, a that value is prefixed to the
@@ -84,14 +90,14 @@ col_check <- function(colname, data, fun, output = FALSE, stage = NULL, ...) {
 #' @export
 
 two_col_check <- function(colname1, colname2, data, fun, output = FALSE,
-                          stage = NULL, ...){
+                          loc = NULL, stage = NULL, ...){
   check_name <- paste0(colname1, "_check")
   data[,check_name] <- mapply(FUN = fun, data[colname1], data[colname2])
 
   if(sum(data[,check_name]) != nrow(data)){
     temp <- data[which(data[,check_name] != TRUE),]
     temp <- temp[, !names(temp) == check_name, drop = FALSE]
-    check_return(errors = temp, output = output, stage = stage, check_name =
+    check_return(errors = temp, output = output, loc = loc, stage = stage, check_name =
                    check_name)
   }
 }
@@ -117,6 +123,9 @@ two_col_check <- function(colname1, colname2, data, fun, output = FALSE,
 #'   only records that failed the specified check. If TRUE, invisibly prints an
 #'   excel output file containing only the records that failed the specified
 #'   check.
+#' @param loc An optional character string that can be used to specify the desired 
+#' location of the error output. Can only be used when output = TRUE. If output = TRUE
+#' and loc is NULL, the error output gets put into the working directory.
 #' @param stage An optional character string that can be used to specify the
 #'   stage of the checking process in which the check is occurring. Only useful
 #'   if output = TRUE. If a value is specified, a that value is prefixed to the
@@ -138,7 +147,7 @@ two_col_check <- function(colname1, colname2, data, fun, output = FALSE,
 #' @export
 
 three_col_check <- function(colname1, colname2, colname3, data = data, fun,
-                            output = FALSE, stage = NULL, ...){
+                            output = FALSE, loc = NULL, stage = NULL, ...){
   check_name <- paste0(colname1, "_check")
   data[,check_name] <- mapply(FUN = fun, data[colname1], data[colname2],
                               data[colname3])
@@ -146,7 +155,7 @@ three_col_check <- function(colname1, colname2, colname3, data = data, fun,
   if(sum(data[,check_name]) != nrow(data)){
     temp <- data[which(data[,check_name] != TRUE),]
     temp <- temp[, !names(temp) == check_name, drop = FALSE]
-    check_return(errors = temp, output = output, stage = stage, check_name =
+    check_return(errors = temp, output = output, loc = loc, stage = stage, check_name =
                    check_name)
   }
 }

@@ -4,7 +4,7 @@
 \alias{col_check}
 \title{Check a single column for data fidelity.}
 \usage{
-col_check(colname, data, fun, output = FALSE, stage = NULL, ...)
+col_check(colname, data, fun, output = FALSE, loc = NULL, stage = NULL, ...)
 }
 \arguments{
 \item{colname}{character string specifying the name of the column within your
@@ -18,6 +18,10 @@ dataframe.}
 only records that failed the specified check. If TRUE, invisibly prints an
 excel output file containing only the records that failed the specified
 check.}
+
+\item{loc}{An optional character string that can be used to specify the desired 
+location of the error output. Can only be used when output = TRUE. If output = TRUE
+and loc is NULL, the error output gets put into the working directory.}
 
 \item{stage}{An optional character string that can be used to specify the
 stage of the checking process in which the check is occurring. Only useful
@@ -35,7 +39,10 @@ col_check(output = TRUE) invisibly prints an excel output file
   containing only records that failed the specified check.
 }
 \description{
-Check a single column for data fidelity.
+To be used with user-defined functions or with built-in check functions such
+as \code{\link{numeric_check}}, \code{\link{character_check}},
+\code{\link{character_blanks_check}}, \code{\link{date_check}}, and
+\code{\link{val_check}}.
 }
 \examples{
 col_check(colname = "ID_var", data = dataset, fun = numeric_check,

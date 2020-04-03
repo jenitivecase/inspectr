@@ -2,9 +2,15 @@ Package: inspectr
 Type: Package
 Title: Perform Basic Checks of Dataframes
 Version: 1.1.0
-Authors@R: person("Jennifer", "Brussow", email = "jbrussow@gmail.com", 
-  role = c("aut", "cre"))
-Maintainer: Jennifer Brussow <jbrussow@gmail.com>
+Authors@R: 
+    c(person(given = "Noelle",
+             family = "Pablo",
+             role = c("aut", "cre"),
+             email = "noellebpablo@gmail.com"),
+      person(given = "Jennifer", 
+             family = "Brussow", 
+             role = "aut",
+             email = "jbrussow@gmail.com"))
 Description: Check one column or multiple columns of a dataframe
     using the preset basic checks or your own functions. Enables
     checks without knowledge of lapply() or sapply().
@@ -15,7 +21,7 @@ Imports:
 	openxlsx
 Depends:
     R (>= 3.0.1)
-RoxygenNote: 6.0.1
+RoxygenNote: 7.1.0
 Suggests: knitr,
     rmarkdown
 VignetteBuilder: knitr

@@ -91,8 +91,11 @@ col_check <- function(colname, data, fun, output = FALSE, loc = NULL, stage = NU
 
 two_col_check <- function(colname1, colname2, data, fun, output = FALSE,
                           loc = NULL, stage = NULL, ...){
+  dots <- rlang::list2(...)
+  
   check_name <- paste0(colname1, "_check")
-  data[,check_name] <- mapply(FUN = fun, data[colname1], data[colname2])
+  data[,check_name] <- mapply(FUN = fun, data[colname1], data[colname2],
+                              MoreArgs = dots)
 
   if(sum(data[,check_name]) != nrow(data)){
     temp <- data[which(data[,check_name] != TRUE),]

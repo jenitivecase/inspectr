@@ -18,7 +18,8 @@ License: CC BY-SA 4.0
 Encoding: UTF-8
 LazyData: true
 Imports:
-	openxlsx
+	openxlsx (>= 4.1.4),
+	rlang (>= 0.4.5)
 Depends:
     R (>= 3.0.1)
 RoxygenNote: 7.1.0

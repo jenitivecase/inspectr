@@ -1,9 +1,6 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
-<<<<<<< HEAD
-=======
 ^\.travis\.yml$
 ^README\.Rmd$
 ^ToDo\.txt$
 ^cran-comments\.md$
->>>>>>> 13d81fc77dda778f08743cc8044161c3d2588da5

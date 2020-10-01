@@ -16,10 +16,6 @@
 #' @param loc An optional character string that can be used to specify the desired 
 #' location of the error output. Can only be used when output = TRUE. If output = TRUE
 #' and loc is NULL, the error output gets put into the working directory.
-#' @param stage An optional character string that can be used to specify the
-#'   stage of the checking process in which the check is occurring. Only useful
-#'   if output = TRUE. If a value is specified, a that value is prefixed to the
-#'   output file; if no value is given, no stage prefix is attached.
 #' @param ... arguments to be passed through to the function specified in
 #'   \code{fun}
 #'
@@ -30,21 +26,21 @@
 #'
 #' @examples
 #' col_check(colname = "ID_var", data = dataset, fun = numeric_check,
-#' output = TRUE, stage = "1-Reasonableness")
+#' output = TRUE)
 #'
 #' col_check(colname = "FName", data = dataset, fun = character_check,
 #' output = FALSE)
 #'
 #' @export
 
-col_check <- function(colname, data, fun, output = FALSE, loc = NULL, stage = NULL, ...) {
+col_check <- function(colname, data, fun, output = FALSE, loc = NULL, ...) {
   check_name <- paste0(colname, "_check")
   data[,check_name] <- apply(data[colname], 1, FUN = fun, ...)
 
   if(sum(data[,check_name]) != nrow(data)){
     temp <- data[which(data[,check_name] != TRUE),]
     temp <- temp[, !names(temp) == check_name, drop = FALSE]
-    check_return(errors = temp, output = output, loc = loc, stage = stage, check_name =
+    check_return(errors = temp, output = output, loc = loc, check_name =
                    check_name)
   }
 }
@@ -69,10 +65,6 @@ col_check <- function(colname, data, fun, output = FALSE, loc = NULL, stage = NU
 #' @param loc An optional character string that can be used to specify the desired 
 #' location of the error output. Can only be used when output = TRUE. If output = TRUE
 #' and loc is NULL, the error output gets put into the working directory.
-#' @param stage An optional character string that can be used to specify the
-#'   stage of the checking process in which the check is occurring. Only useful
-#'   if output = TRUE. If a value is specified, a that value is prefixed to the
-#'   output file; if no value is given, no stage prefix is attached.
 #' @param ... arguments to be passed through to the function specified in
 #'   \code{fun}
 #'
@@ -84,13 +76,12 @@ col_check <- function(colname, data, fun, output = FALSE, loc = NULL, stage = NU
 #' @examples
 #' two_col_check("Var1", "Var2", dataset, less_than_equalto, output = FALSE)
 #'
-#' two_col_check("Var2", "Var1", dataset, greater_than, output = TRUE,
-#'    stage = "1-Reasonableness")
+#' two_col_check("Var2", "Var1", dataset, greater_than, output = TRUE)
 #'
 #' @export
 
 two_col_check <- function(colname1, colname2, data, fun, output = FALSE,
-                          loc = NULL, stage = NULL, ...){
+                          loc = NULL, ...){
   dots <- rlang::list2(...)
   
   check_name <- paste0(colname1, "_check")
@@ -100,7 +91,7 @@ two_col_check <- function(colname1, colname2, data, fun, output = FALSE,
   if(sum(data[,check_name]) != nrow(data)){
     temp <- data[which(data[,check_name] != TRUE),]
     temp <- temp[, !names(temp) == check_name, drop = FALSE]
-    check_return(errors = temp, output = output, loc = loc, stage = stage, check_name =
+    check_return(errors = temp, output = output, loc = loc, check_name =
                    check_name)
   }
 }
@@ -129,10 +120,6 @@ two_col_check <- function(colname1, colname2, data, fun, output = FALSE,
 #' @param loc An optional character string that can be used to specify the desired 
 #' location of the error output. Can only be used when output = TRUE. If output = TRUE
 #' and loc is NULL, the error output gets put into the working directory.
-#' @param stage An optional character string that can be used to specify the
-#'   stage of the checking process in which the check is occurring. Only useful
-#'   if output = TRUE. If a value is specified, a that value is prefixed to the
-#'   output file; if no value is given, no stage prefix is attached.
 #' @param ... arguments to be passed through to the function specified in
 #'   \code{fun}
 #'
@@ -150,7 +137,7 @@ two_col_check <- function(colname1, colname2, data, fun, output = FALSE,
 #' @export
 
 three_col_check <- function(colname1, colname2, colname3, data = data, fun,
-                            output = FALSE, loc = NULL, stage = NULL, ...){
+                            output = FALSE, loc = NULL, ...){
   check_name <- paste0(colname1, "_check")
   data[,check_name] <- mapply(FUN = fun, data[colname1], data[colname2],
                               data[colname3])
@@ -158,7 +145,7 @@ three_col_check <- function(colname1, colname2, colname3, data = data, fun,
   if(sum(data[,check_name]) != nrow(data)){
     temp <- data[which(data[,check_name] != TRUE),]
     temp <- temp[, !names(temp) == check_name, drop = FALSE]
-    check_return(errors = temp, output = output, loc = loc, stage = stage, check_name =
+    check_return(errors = temp, output = output, loc = loc,check_name =
                    check_name)
   }
 }

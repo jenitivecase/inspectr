@@ -4,16 +4,7 @@
 \alias{two_col_check}
 \title{Check a column for data fidelity using criteria related to a second column.}
 \usage{
-two_col_check(
-  colname1,
-  colname2,
-  data,
-  fun,
-  output = FALSE,
-  loc = NULL,
-  stage = NULL,
-  ...
-)
+two_col_check(colname1, colname2, data, fun, output = FALSE, loc = NULL, ...)
 }
 \arguments{
 \item{colname1}{character string specifying the name of the column within
@@ -35,11 +26,6 @@ check.}
 location of the error output. Can only be used when output = TRUE. If output = TRUE
 and loc is NULL, the error output gets put into the working directory.}
 
-\item{stage}{An optional character string that can be used to specify the
-stage of the checking process in which the check is occurring. Only useful
-if output = TRUE. If a value is specified, a that value is prefixed to the
-output file; if no value is given, no stage prefix is attached.}
-
 \item{...}{arguments to be passed through to the function specified in
 \code{fun}}
 }
@@ -58,7 +44,6 @@ as \code{\link{less_than}}, \code{\link{less_than_equalto}},
 \examples{
 two_col_check("Var1", "Var2", dataset, less_than_equalto, output = FALSE)
 
-two_col_check("Var2", "Var1", dataset, greater_than, output = TRUE,
-   stage = "1-Reasonableness")
+two_col_check("Var2", "Var1", dataset, greater_than, output = TRUE)
 
 }

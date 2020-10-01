@@ -4,7 +4,7 @@
 \alias{col_check}
 \title{Check a single column for data fidelity.}
 \usage{
-col_check(colname, data, fun, output = FALSE, loc = NULL, stage = NULL, ...)
+col_check(colname, data, fun, output = FALSE, loc = NULL, ...)
 }
 \arguments{
 \item{colname}{character string specifying the name of the column within your
@@ -22,11 +22,6 @@ check.}
 \item{loc}{An optional character string that can be used to specify the desired 
 location of the error output. Can only be used when output = TRUE. If output = TRUE
 and loc is NULL, the error output gets put into the working directory.}
-
-\item{stage}{An optional character string that can be used to specify the
-stage of the checking process in which the check is occurring. Only useful
-if output = TRUE. If a value is specified, a that value is prefixed to the
-output file; if no value is given, no stage prefix is attached.}
 
 \item{...}{arguments to be passed through to the function specified in
 \code{fun}}
@@ -46,7 +41,7 @@ as \code{\link{numeric_check}}, \code{\link{character_check}},
 }
 \examples{
 col_check(colname = "ID_var", data = dataset, fun = numeric_check,
-output = TRUE, stage = "1-Reasonableness")
+output = TRUE)
 
 col_check(colname = "FName", data = dataset, fun = character_check,
 output = FALSE)

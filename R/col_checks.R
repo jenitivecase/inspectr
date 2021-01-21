@@ -32,6 +32,9 @@
 #' output = FALSE)
 #'
 #' @export
+#' @importFrom magrittr %>%
+#' @importFrom dplyr mutate
+#' @importFrom dplyr filter
 
 col_check <- function(colname, data, fun, output = FALSE, loc = NULL, ...){
   check_name <- paste0(colname, "_check")

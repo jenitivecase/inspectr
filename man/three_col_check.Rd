@@ -9,7 +9,7 @@ three_col_check(
   colname1,
   colname2,
   colname3,
-  data = data,
+  data,
   fun,
   output = FALSE,
   loc = NULL,

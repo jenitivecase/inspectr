@@ -16,7 +16,9 @@ fig.path = "README-" )
 
 [![Travis-CI Build 
 Status](https://travis-ci.org/jenitivecase/inspectr.svg?branch=master)](https://travis-ci.org/jenitivecase/inspectr)
-
+  <!-- badges: start -->
+  [![R build status](https://github.com/jenitivecase/inspectr/workflows/R-CMD-check/badge.svg)](https://github.com/jenitivecase/inspectr/actions)
+  <!-- badges: end -->
 
 Inspectr consists of functions adapted from a quality control script I developed
 for performing data checks on large datasets from an educational assessment, 
@@ -33,5 +35,3 @@ generalizable to unique data requirements.
 The data-checks vignette included with this package provides an overview of how
 to use the column check functions and illustrates the included basic fidelity
 check functions: `vignette("introduction", package = "dplyr")`
-
-

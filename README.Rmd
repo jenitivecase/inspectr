@@ -12,13 +12,10 @@ fig.path = "README-" )
 ```
 
 # inspectr
-### A package for performing fidelity checks on messy dataframes.
-
-[![Travis-CI Build 
-Status](https://travis-ci.org/jenitivecase/inspectr.svg?branch=master)](https://travis-ci.org/jenitivecase/inspectr)
   <!-- badges: start -->
   [![R build status](https://github.com/jenitivecase/inspectr/workflows/R-CMD-check/badge.svg)](https://github.com/jenitivecase/inspectr/actions)
   <!-- badges: end -->
+### A package for performing fidelity checks on messy dataframes.
 
 Inspectr consists of functions adapted from a quality control script I developed
 for performing data checks on large datasets from an educational assessment, 
